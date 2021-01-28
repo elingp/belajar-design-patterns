@@ -1,0 +1,4 @@
+GET http://localhost:8080
+X-API: secret
+
+Accept: application/json
