@@ -1,11 +1,13 @@
 package com.blibli.belajar.design.patterns.singleton;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 public class SingletonApplication {
 
+  @SpringBootApplication
   public static class Configuration {
 
     @Bean
