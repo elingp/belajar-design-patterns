@@ -1,6 +1,7 @@
 package com.blibli.belajar.design.patterns.facade;
 
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -67,6 +68,12 @@ public class FacadeApplication {
   @SpringBootApplication
   public static class Application {
 
+    // jika ada 2 Bean dengan tipe data atau nama yang sama
+    // bisa di solve dengan menambahkan @Primary di bawah Bean
+    // atau menghapus salah satu @Bean atau dengan menambahkan
+    // @Qualifier di method yang autoriwed/perlu di inject sama
+    // Bean (cek AddressController)
+    @Bean
     public AddressService addressServicePostgre() {
       return new AddressServiceImplPostgre();
     }
@@ -77,7 +84,8 @@ public class FacadeApplication {
     }
 
     @Bean
-    public AddressController addressController(AddressService addressService) {
+    public AddressController addressController(
+        @Qualifier("addressServiceMongo") AddressService addressService) {
       AddressController controller = new AddressController();
       controller.setAddressService(addressService);
       return controller;
